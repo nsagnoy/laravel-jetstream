@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+    mysql-auth:
+        image: 'mysql'
+        ports:
+            - '3306:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: 'pass'
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: 'Auth_Val'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: 'pass'
+        volumes:
+            - 'mysql-volume-auth:/var/lib/mysql'
+volumes:
+    mysql-volume-auth:
+        driver: local
