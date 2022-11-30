@@ -1,3 +1,4 @@
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -30,23 +31,33 @@
             </div>
 
             <div class="mt-4">
+                <x-jet-label for="country" value="{{ __('Country') }}" />
+                {{--<x-jet-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required/>--}}
+                <select name="country" id="country" class="block mt-1 w-full">
+                    @foreach(array_keys($countries) as $country)
+                        <option value="{{$country}} @if ($country == 'Afghanistan') selected @endif">{{$country}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="city" value="{{ __('City') }}" />
+                {{--<x-jet-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required/>--}}
+                <select name="city" id="city" class="block mt-1 w-full">
+                    @foreach($countries['Afghanistan'] as $city)
+                        <option value="{{$city}}" @if ($city == 'Herat') selected @endif">{{$city}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="address" value="{{ __('Address') }}" />
                 <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="city" value="{{ __('City') }}" />
-                <x-jet-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required/>
-            </div>
-
-            <div class="mt-4">
                 <x-jet-label for="zip" value="{{ __('Zip') }}" />
                 <x-jet-input id="zip" class="block mt-1 w-full" type="number" name="zip" :value="old('zip')" required/>
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="country" value="{{ __('Country') }}" />
-                <x-jet-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required/>
             </div>
 
             <div class="mt-4">
@@ -96,3 +107,22 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+<script type="text/javascript">
+    var countries = <?php echo json_encode($countries) ?>;
+
+
+    $(document).ready(function (){
+        $('#country').change(function (){
+            $('#city').empty()
+
+            var selectedCountry =  $('#country').find(":selected").text();
+            var cities = countries[selectedCountry];
+
+           $.each(cities, function (i, city){
+               $('#city').append('<option value='+city+'>'+city+'</option>')
+           })
+        })
+    })
+</script>
+
+
