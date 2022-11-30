@@ -32,20 +32,18 @@
 
             <div class="mt-4">
                 <x-jet-label for="country" value="{{ __('Country') }}" />
-                {{--<x-jet-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required/>--}}
                 <select name="country" id="country" class="block mt-1 w-full">
                     @foreach(array_keys($countries) as $country)
-                        <option value="{{$country}} @if ($country == 'Afghanistan') selected @endif">{{$country}}</option>
+                        <option value="{{$country}}" >{{$country}}</option>
                     @endforeach
                 </select>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="city" value="{{ __('City') }}" />
-                {{--<x-jet-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required/>--}}
                 <select name="city" id="city" class="block mt-1 w-full">
                     @foreach($countries['Afghanistan'] as $city)
-                        <option value="{{$city}}" @if ($city == 'Herat') selected @endif">{{$city}}</option>
+                        <option value="{{$city}}">{{$city}}</option>
                     @endforeach
                 </select>
             </div>
