@@ -30,8 +30,12 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="address" value="{{ __('Address') }}" />
-                <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required/>
+                <x-jet-label for="country" value="{{ __('Country') }}" />
+                <select name="country" id="country" class="block mt-1 w-full">
+                    @foreach(array_keys($countries) as $country)
+                        <option value="{{$country}}" >{{$country}}</option>
+                    @endforeach
+                </select>
             </div>
 
             <div class="mt-4">
@@ -40,13 +44,13 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="zip" value="{{ __('Zip') }}" />
-                <x-jet-input id="zip" class="block mt-1 w-full" type="number" name="zip" :value="old('zip')" required/>
+                <x-jet-label for="address" value="{{ __('Address') }}" />
+                <x-jet-input id="address" class="block mt-1 w-full" type="text" name="address" :value="old('address')" required/>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="country" value="{{ __('Country') }}" />
-                <x-jet-input id="country" class="block mt-1 w-full" type="text" name="country" :value="old('country')" required/>
+                <x-jet-label for="zip" value="{{ __('Zip') }}" />
+                <x-jet-input id="zip" class="block mt-1 w-full" type="number" name="zip" :value="old('zip')" required/>
             </div>
 
             <div class="mt-4">
@@ -96,3 +100,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
+
