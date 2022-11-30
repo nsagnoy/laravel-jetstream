@@ -22,9 +22,6 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
 
-        $messages = [
-            'country.in' => "Must input a valid country. First letter should be capital."
-        ];
         Validator::make($input, [
             'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -37,7 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'phone_no' => 'required|min:8|max:11',
             'role' => 'required',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ], $messages)->validate();
+        ])->validate();
 
         return User::create([
             'name' => $input['name'],
