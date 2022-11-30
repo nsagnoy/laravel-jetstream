@@ -31,7 +31,7 @@ class JetstreamServiceProvider extends ServiceProvider
 
         Fortify::registerView(function () {
 
-            $countries = include('../tests/Data/countriesData.php');
+            $countries = include('../resources/data/countriesData.php');
 
             return view('auth.register',['countries' => $countries]);
         });
