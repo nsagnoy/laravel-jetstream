@@ -1,4 +1,3 @@
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
@@ -41,11 +40,7 @@
 
             <div class="mt-4">
                 <x-jet-label for="city" value="{{ __('City') }}" />
-                <select name="city" id="city" class="block mt-1 w-full">
-                    @foreach($countries['Afghanistan'] as $city)
-                        <option value="{{$city}}">{{$city}}</option>
-                    @endforeach
-                </select>
+                <x-jet-input id="city" class="block mt-1 w-full" type="text" name="city" :value="old('city')" required/>
             </div>
 
             <div class="mt-4">
@@ -105,22 +100,4 @@
         </form>
     </x-jet-authentication-card>
 </x-guest-layout>
-<script type="text/javascript">
-    var countries = <?php echo json_encode($countries) ?>;
-
-
-    $(document).ready(function (){
-        $('#country').change(function (){
-            $('#city').empty()
-
-            var selectedCountry =  $('#country').find(":selected").text();
-            var cities = countries[selectedCountry];
-
-           $.each(cities, function (i, city){
-               $('#city').append('<option value='+city+'>'+city+'</option>')
-           })
-        })
-    })
-</script>
-
 

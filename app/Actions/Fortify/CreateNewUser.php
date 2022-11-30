@@ -27,7 +27,7 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
-            'city' => 'required',
+            'city' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
             'country' => 'required',
             'zip' => 'required|regex:/\b\d{4}\b/',
             'birth_date' => 'required',
