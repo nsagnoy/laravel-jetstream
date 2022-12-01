@@ -26,13 +26,13 @@ class CreateNewUser implements CreatesNewUsers
             'name' => ['required', 'string', 'max:50'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
-            'address' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
-            'city' => 'required|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
-            'country' => 'required',
-            'zip' => 'required|regex:/\b\d{4}\b/',
-            'birth_date' => 'required',
-            'phone_no' => 'required|min:8|max:11',
-            'role' => 'required',
+            'address' => 'required|string|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
+            'city' => 'required|string|regex:/(^[-0-9A-Za-z.,\/ ]+$)/',
+            'country' => 'required|string',
+            'zip' => 'required|numeric|regex:/\b\d{4}\b/',
+            'birth_date' => 'required|date',
+            'phone_no' => 'required|string|min:8|max:11',
+            'role' => 'required|string',
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
@@ -50,3 +50,4 @@ class CreateNewUser implements CreatesNewUsers
         ]);
     }
 }
+
